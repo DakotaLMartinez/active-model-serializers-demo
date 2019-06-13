@@ -5,11 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Student.destroy_all
+Course.destroy_all
 
 25.times do 
-  Course.create(
+  course = Course.create(
     name: Faker::Educator.course_name,
     instructor_name: Faker::Name.name,
     subject: Faker::Educator.subject
   )
+  15.times do 
+    course.students.create(
+      name: Faker::Name.name,
+      email: Faker::Internet.email
+    )
+  end
 end

@@ -1,0 +1,7 @@
+<h1>Students</h1>
+<p><%= @course && @course.name %></p>
+<% @students.each do |student| %>
+  <section class="card">
+    <p><%= link_to student.name, student_path(student) %></p>
+  </section>
+<% end %>
