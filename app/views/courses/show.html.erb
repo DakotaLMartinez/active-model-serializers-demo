@@ -1,4 +1,6 @@
 <h1><%= @course.name %></h1>
 <p>Taught by: <%= @course.instructor_name %></p>
 <p>Subject: <%= @course.subject %></p>
+<button id="show-students" data-id="<%= @course.id %>">Show Students</button>
+<div id="students"></div>
 <%= link_to 'Back', courses_path %>
