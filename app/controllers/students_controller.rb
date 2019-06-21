@@ -3,9 +3,26 @@ class StudentsController < ApplicationController
     if params[:course_id]
       @course = Course.find_by(id: params[:course_id])
       @students = @course && @course.students
+      if @students
+        respond_to do |f|
+          f.html {}
+          f.json { render json: @students, each_serializer: CourseStudentSerializer }
+        end
+      else
+        @error = "Course not found"
+        respond_to do |f|
+          f.html {}
+          f.json { render json: {message: @error}, status: :not_found }
+        end
+      end
     else
       @students = Student.all 
+      respond_to do |f|
+        f.html {}
+        f.json { render json: @students }
+      end
     end
+    
   end 
 
   def show 
