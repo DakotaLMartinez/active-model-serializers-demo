@@ -3,4 +3,16 @@
 <p>Subject: <%= @course.subject %></p>
 <button id="show-students" data-id="<%= @course.id %>">Show Students</button>
 <div id="students"></div>
+<h1>Add Student</h1>  
+<%= form_for([@course, Student.new]) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <%= f.submit 'Add Student' %>
+<% end %>
 <%= link_to 'Back', courses_path %>
